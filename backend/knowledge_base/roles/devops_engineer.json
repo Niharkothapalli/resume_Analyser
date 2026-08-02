@@ -1,0 +1,36 @@
+{
+  "role": "DevOps Engineer",
+  "required_skills": [
+    "Linux",
+    "Docker",
+    "Kubernetes",
+    "CI/CD",
+    "Bash",
+    "Git"
+  ],
+  "preferred_skills": [
+    "Terraform",
+    "Ansible",
+    "AWS",
+    "Prometheus",
+    "Grafana"
+  ],
+  "optional_skills": [
+    "Python",
+    "Golang",
+    "Nginx"
+  ],
+  "keywords": [
+    "Infrastructure as Code",
+    "Monitoring",
+    "Automation",
+    "Cloud Native",
+    "Jenkins",
+    "YAML",
+    "GitOps"
+  ],
+  "recommended_certifications": [
+    "AWS Certified DevOps Engineer",
+    "Certified Kubernetes Administrator (CKA)"
+  ]
+}

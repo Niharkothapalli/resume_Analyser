@@ -1,0 +1,78 @@
+[
+  {
+    "name": "AWS Certified Developer - Associate",
+    "provider": "Amazon Web Services (AWS)",
+    "skills_covered": [
+      "AWS",
+      "Docker",
+      "REST API",
+      "CI/CD",
+      "NoSQL"
+    ]
+  },
+  {
+    "name": "Certified Kubernetes Administrator (CKA)",
+    "provider": "The Linux Foundation",
+    "skills_covered": [
+      "Kubernetes",
+      "Docker",
+      "Linux",
+      "Monitoring"
+    ]
+  },
+  {
+    "name": "Google Cloud Professional Data Engineer",
+    "provider": "Google Cloud",
+    "skills_covered": [
+      "SQL",
+      "ETL",
+      "Spark",
+      "Big Data",
+      "Hadoop"
+    ]
+  },
+  {
+    "name": "Meta Front-End Developer Professional Certificate",
+    "provider": "Meta (Coursera)",
+    "skills_covered": [
+      "JavaScript",
+      "React",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Git"
+    ]
+  },
+  {
+    "name": "IBM Full Stack Software Developer Professional Certificate",
+    "provider": "IBM (Coursera)",
+    "skills_covered": [
+      "Node.js",
+      "Express",
+      "React",
+      "MongoDB",
+      "Docker",
+      "CI/CD"
+    ]
+  },
+  {
+    "name": "Oracle Certified Professional: Java SE Developer",
+    "provider": "Oracle",
+    "skills_covered": [
+      "Java",
+      "SQL",
+      "Hibernate",
+      "OOP"
+    ]
+  },
+  {
+    "name": "TensorFlow Developer Certificate",
+    "provider": "TensorFlow",
+    "skills_covered": [
+      "Python",
+      "Machine Learning",
+      "TensorFlow",
+      "Deep Learning"
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+# ==============================================================================
+# CareerLens AI - Root Requirements Entrypoint
+# Compatible Python Version: Python >= 3.11, < 3.13
+# ==============================================================================
+
+-r backend/requirements.txt

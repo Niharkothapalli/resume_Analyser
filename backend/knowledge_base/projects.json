@@ -1,0 +1,128 @@
+[
+  {
+    "title": "Scalable REST API Backend",
+    "description": "Build a robust and secure REST API backend that handles user authentication, session state caching, and database schemas. Implement microservices communications and rate-limiting middleware.",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "REST API",
+      "SQL",
+      "FastAPI",
+      "Express",
+      "Node.js",
+      "Python"
+    ],
+    "difficulty": "Intermediate",
+    "tech_stack": [
+      "Spring Boot",
+      "PostgreSQL",
+      "Redis",
+      "Docker"
+    ]
+  },
+  {
+    "title": "Containerized Microservices Cluster",
+    "description": "Design an Infrastructure-as-Code setup to provision a Kubernetes cluster. Orchestrate multi-tier web applications with auto-scaling, Prometheus monitoring dashboards, and robust CI/CD pipelines.",
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "Terraform",
+      "CI/CD",
+      "AWS",
+      "Bash"
+    ],
+    "difficulty": "Advanced",
+    "tech_stack": [
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "GitHub Actions",
+      "Prometheus",
+      "Grafana"
+    ]
+  },
+  {
+    "title": "Semantic Search Engine using RAG",
+    "description": "Develop a high-performance vector search engine that parses document uploads, computes high-dimensional embeddings, stores them in FAISS, and runs grounded LLM query prompts.",
+    "skills": [
+      "Python",
+      "RAG",
+      "LLM",
+      "FAISS",
+      "LangChain",
+      "Machine Learning"
+    ],
+    "difficulty": "Advanced",
+    "tech_stack": [
+      "Python",
+      "Vite",
+      "FastAPI",
+      "Google Gemini API",
+      "FAISS",
+      "Sentence Transformers"
+    ]
+  },
+  {
+    "title": "Responsive Single Page Portfolio dashboard",
+    "description": "Create a premium responsive UI dashboard showcasing live graphs, analytics, dark modes, animations, and clean state managements using modern frameworks.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "TypeScript",
+      "Redux"
+    ],
+    "difficulty": "Beginner",
+    "tech_stack": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Recharts"
+    ]
+  },
+  {
+    "title": "Big Data ETL Pipeline",
+    "description": "Establish a robust pipeline that consumes, validates, and processes multi-source event streams. Load datasets into storage warehouses using scheduling engines.",
+    "skills": [
+      "Spark",
+      "Hadoop",
+      "ETL",
+      "Airflow",
+      "Kafka",
+      "Snowflake",
+      "SQL"
+    ],
+    "difficulty": "Advanced",
+    "tech_stack": [
+      "Apache Spark",
+      "Apache Airflow",
+      "Kafka",
+      "Snowflake",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "title": "Enterprise Full Stack Commerce App",
+    "description": "Implement a full stack web app featuring a secure dashboard, product catalogues, and payments checkout. Establish proper state storage, REST routes, and clean folder paths.",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "SQL"
+    ],
+    "difficulty": "Intermediate",
+    "tech_stack": [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS"
+    ]
+  }
+]

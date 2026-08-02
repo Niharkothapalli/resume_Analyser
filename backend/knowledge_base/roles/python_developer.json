@@ -1,0 +1,37 @@
+{
+  "role": "Python Developer",
+  "required_skills": [
+    "Python",
+    "Django",
+    "Flask",
+    "SQL",
+    "REST API",
+    "Git"
+  ],
+  "preferred_skills": [
+    "FastAPI",
+    "Docker",
+    "PostgreSQL",
+    "PyTest",
+    "Celery"
+  ],
+  "optional_skills": [
+    "Redis",
+    "AWS",
+    "MongoDB"
+  ],
+  "keywords": [
+    "Pandas",
+    "Asyncio",
+    "Object Oriented Python",
+    "Celery",
+    "Pip",
+    "Virtualenv",
+    "WSGI",
+    "ASGI"
+  ],
+  "recommended_certifications": [
+    "PCEP Certified Entry-Level Python Programmer",
+    "PCAP Certified Associate in Python Programming"
+  ]
+}

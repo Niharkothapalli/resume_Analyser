@@ -1,0 +1,34 @@
+{
+  "role": "Frontend Developer",
+  "required_skills": [
+    "JavaScript",
+    "React",
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "Git"
+  ],
+  "preferred_skills": [
+    "TypeScript",
+    "Next.js",
+    "Redux",
+    "Framer Motion"
+  ],
+  "optional_skills": [
+    "Node.js",
+    "Jest",
+    "GraphQL"
+  ],
+  "keywords": [
+    "Single Page Application",
+    "DOM",
+    "Responsive Design",
+    "Webpack",
+    "Vite",
+    "Accessibility",
+    "SEO"
+  ],
+  "recommended_certifications": [
+    "Meta Front-End Developer Professional Certificate"
+  ]
+}

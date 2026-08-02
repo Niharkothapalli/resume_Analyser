@@ -1,0 +1,33 @@
+# Python virtual environments & dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node modules & frontend builds
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Environment variables & secrets
+.env
+.env.*
+.env.development.local
+.env.test.local
+.env.production.local
+
+# CareerLens AI Local Caches (Session Storage)
+backend/uploads/*/
+backend/vector_store/*/
+backend/logs/*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

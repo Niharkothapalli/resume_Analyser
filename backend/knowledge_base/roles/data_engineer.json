@@ -1,0 +1,36 @@
+{
+  "role": "Data Engineer",
+  "required_skills": [
+    "Python",
+    "SQL",
+    "Spark",
+    "Hadoop",
+    "ETL",
+    "Git"
+  ],
+  "preferred_skills": [
+    "Scala",
+    "Airflow",
+    "Kafka",
+    "Snowflake",
+    "dbt"
+  ],
+  "optional_skills": [
+    "Docker",
+    "Kubernetes",
+    "AWS"
+  ],
+  "keywords": [
+    "Data Pipeline",
+    "Big Data",
+    "Data Warehouse",
+    "Data Lake",
+    "NoSQL",
+    "Cloud Storage",
+    "Schema design"
+  ],
+  "recommended_certifications": [
+    "Google Cloud Professional Data Engineer",
+    "AWS Certified Data Analytics"
+  ]
+}

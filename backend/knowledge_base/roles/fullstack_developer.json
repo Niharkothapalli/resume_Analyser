@@ -1,0 +1,35 @@
+{
+  "role": "Full Stack Developer",
+  "required_skills": [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Express",
+    "SQL",
+    "Git"
+  ],
+  "preferred_skills": [
+    "TypeScript",
+    "Docker",
+    "MongoDB",
+    "Tailwind CSS"
+  ],
+  "optional_skills": [
+    "Redis",
+    "Next.js",
+    "AWS"
+  ],
+  "keywords": [
+    "REST API",
+    "Full Stack",
+    "Authentication",
+    "MERN Stack",
+    "CI/CD",
+    "Next.js",
+    "Database Design"
+  ],
+  "recommended_certifications": [
+    "AWS Certified Cloud Practitioner",
+    "IBM Full Stack Software Developer Certificate"
+  ]
+}

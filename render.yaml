@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: careerlens-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: COHERE_API_KEY
+        sync: false
+      - key: COHERE_MODEL
+        value: command-a-03-2025
+      - key: PROMPT_VERSION
+        value: v1
+      - key: CORS_ORIGINS
+        value: "https://careerlens-ai.vercel.app,http://localhost:5173"
+      - key: DEBUG
+        value: "False"

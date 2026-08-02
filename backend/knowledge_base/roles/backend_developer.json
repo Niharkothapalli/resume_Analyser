@@ -1,0 +1,34 @@
+{
+  "role": "Backend Developer",
+  "required_skills": [
+    "Java",
+    "Spring Boot",
+    "REST API",
+    "SQL",
+    "Docker",
+    "Git"
+  ],
+  "preferred_skills": [
+    "Redis",
+    "Kafka",
+    "AWS",
+    "Kubernetes"
+  ],
+  "optional_skills": [
+    "PostgreSQL",
+    "Python",
+    "Express"
+  ],
+  "keywords": [
+    "Microservices",
+    "CI/CD",
+    "JUnit",
+    "ORM",
+    "Relational Database",
+    "Concurrency"
+  ],
+  "recommended_certifications": [
+    "AWS Certified Developer - Associate",
+    "Oracle Certified Professional Java Developer"
+  ]
+}

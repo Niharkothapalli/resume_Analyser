@@ -1,0 +1,35 @@
+{
+  "role": "Java Developer",
+  "required_skills": [
+    "Java",
+    "Spring Boot",
+    "SQL",
+    "Hibernate",
+    "REST API",
+    "Git"
+  ],
+  "preferred_skills": [
+    "Maven",
+    "Docker",
+    "JUnit",
+    "Microservices",
+    "PostgreSQL"
+  ],
+  "optional_skills": [
+    "AWS",
+    "Kafka",
+    "Redis"
+  ],
+  "keywords": [
+    "OOP",
+    "Spring Framework",
+    "Multithreading",
+    "JPA",
+    "Design Patterns",
+    "Apache Tomcat",
+    "JVM Tuning"
+  ],
+  "recommended_certifications": [
+    "Oracle Certified Professional Java SE Developer"
+  ]
+}
