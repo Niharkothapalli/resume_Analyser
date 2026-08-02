@@ -96,8 +96,8 @@ app = FastAPI(
     title="CareerLens AI API",
     description="Production API for AI-Powered ATS Resume Analysis and RAG Career Intelligence",
     version=settings.APP_VERSION,
-    docs_url="/docs" if settings.DEBUG else None,
-    redoc_url="/redoc" if settings.DEBUG else None,
+    docs_url="/docs",
+    redoc_url="/redoc",
 )
 
 # 3. Security & CORS Middleware
