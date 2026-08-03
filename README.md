@@ -66,7 +66,7 @@ In today's competitive hiring landscape, **over 75% of resumes are discarded by 
 - **Beyond Keyword Matching**: Employs mathematical cosine similarity over dense vector spaces to evaluate candidate competency against targeted job roles.
 - **Strictly Grounded RAG Chat**: Context-aware AI assistant that answers questions grounded *only* in candidate resume credentials—preventing hallucinations.
 - **Provider Agnostic Architecture**: Seamlessly switch between Google Gemini and Cohere without updating a single line of application code.
-- **Privacy First & Local Indexing**: FAISS indices and document chunks are isolated strictly per session UUID, preventing cross-tenant data leaks.
+- **Privacy First & Lo cal Indexing**: FAISS indices and document chunks are isolated strictly per session UUID, preventing cross-tenant data leaks.
 
 ---
 
