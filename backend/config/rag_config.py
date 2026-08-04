@@ -11,7 +11,7 @@ CHUNK_OVERLAP = 150
 # Vector Store Search Parameters
 TOP_K = 5
 SIMILARITY_THRESHOLD = 0.35  # Cosine distance/similarity threshold
-MAX_CONTEXT_SIZE = 8000     # Maximum characters to feed Gemini
+MAX_CONTEXT_SIZE = 8000     # Maximum characters to feed LLM context
 
 # Upload Rules
 SUPPORTED_FILE_SIZE = 10 * 1024 * 1024  # 10 MB limit

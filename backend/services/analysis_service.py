@@ -23,7 +23,7 @@ class AnalysisService:
 
     def run_analysis(self, session_id: str, target_role: str) -> Dict[str, Any]:
         """
-        Main runner orchestrating RAG search, scoring, role snapshot, and Gemini calls.
+        Main runner orchestrating RAG search, scoring, role snapshot, and LLM calls.
         Caches the output directly under uploads/{session_id}/analysis.json
         """
         logger.info(f"Initiating analysis for session {session_id} and target role: {target_role}")

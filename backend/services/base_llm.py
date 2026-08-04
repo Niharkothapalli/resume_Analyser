@@ -4,14 +4,13 @@ from typing import Dict, Any, Optional
 class BaseLLMService(ABC):
     """
     Abstract base class for LLM providers.
-    Every provider (Cohere, Gemini, OpenAI, Groq, Anthropic, etc.)
-    must implement this standard interface and return normalized response dictionaries.
+    LLM services implement this standard interface and return normalized response dictionaries.
     """
 
     @property
     @abstractmethod
     def provider_name(self) -> str:
-        """Returns the lower-case unique name of the LLM provider (e.g. 'cohere', 'gemini')."""
+        """Returns the lower-case unique name of the LLM provider (e.g. 'cohere')."""
         pass
 
     @property

@@ -31,47 +31,21 @@ else:
     ]
 
 # LLM Provider Configuration
-raw_provider = os.getenv("LLM_PROVIDER", "gemini")
-LLM_PROVIDER = raw_provider.strip().strip("'\"").lower()
-
-if not LLM_PROVIDER:
-    raise ValueError(
-        "CRITICAL ERROR: LLM_PROVIDER is missing! "
-        "Please set LLM_PROVIDER in your environment or backend/.env (e.g. LLM_PROVIDER=gemini or LLM_PROVIDER=cohere)."
-    )
+LLM_PROVIDER = "cohere"
 
 # Cohere API Configuration
 raw_cohere_key = os.getenv("COHERE_API_KEY", "")
 COHERE_API_KEY = raw_cohere_key.strip().strip("'\"")
 COHERE_MODEL = os.getenv("COHERE_MODEL", "command-a-03-2025").strip().strip("'\"")
 
-# Gemini API Configuration
-raw_gemini_key = os.getenv("GEMINI_API_KEY", "")
-GEMINI_API_KEY = raw_gemini_key.strip().strip("'\"")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip().strip("'\"")
-
 # Provider Key Validation
-if LLM_PROVIDER == "cohere":
-    if not COHERE_API_KEY:
-        raise ValueError(
-            "CRITICAL ERROR: COHERE_API_KEY is missing! "
-            "Please set COHERE_API_KEY in your environment or backend/.env"
-        )
-    ACTIVE_API_KEY = COHERE_API_KEY
-    ACTIVE_MODEL = COHERE_MODEL
-elif LLM_PROVIDER == "gemini":
-    if not GEMINI_API_KEY:
-        raise ValueError(
-            "CRITICAL ERROR: GEMINI_API_KEY is missing! "
-            "Please set GEMINI_API_KEY in your environment or backend/.env"
-        )
-    ACTIVE_API_KEY = GEMINI_API_KEY
-    ACTIVE_MODEL = GEMINI_MODEL
-else:
+if not COHERE_API_KEY:
     raise ValueError(
-        f"CRITICAL ERROR: Unsupported LLM_PROVIDER '{LLM_PROVIDER}'. "
-        "Supported providers are 'cohere' and 'gemini'."
+        "CRITICAL ERROR: COHERE_API_KEY is missing! "
+        "Please set COHERE_API_KEY in your environment or backend/.env"
     )
+ACTIVE_API_KEY = COHERE_API_KEY
+ACTIVE_MODEL = COHERE_MODEL
 
 # Key Source Identification
 KEY_SOURCE = "Environment" if not env_file.exists() else f"backend/.env ({env_file})"

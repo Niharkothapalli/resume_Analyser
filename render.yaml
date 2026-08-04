@@ -10,11 +10,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: LLM_PROVIDER
-        value: gemini
-      - key: GEMINI_API_KEY
-        sync: false
-      - key: GEMINI_MODEL
-        value: gemini-2.5-flash
+        value: cohere
       - key: COHERE_API_KEY
         sync: false
       - key: COHERE_MODEL
