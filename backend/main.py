@@ -170,6 +170,14 @@ app.include_router(session.router)
 app.include_router(analyze.router)
 app.include_router(chat.router)
 
+@app.get("/debug")
+def debug():
+    return {
+        "message": "CareerLens Debug Endpoint",
+        "version": settings.APP_VERSION,
+        "provider": settings.LLM_PROVIDER
+    }
+
 if __name__ == "__main__":
     import uvicorn
     logger.info(f"Starting uvicorn server at http://{settings.HOST}:{settings.PORT}")
