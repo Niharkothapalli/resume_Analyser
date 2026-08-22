@@ -20,6 +20,7 @@ if (import.meta.env.VITE_API_BASE_URL) {
 export default function App() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [targetRole, setTargetRole] = useState('');
+  const [applicationLevel, setApplicationLevel] = useState('fresher');
   const [sessionId, setSessionId] = useState('');
   const [parsedData, setParsedData] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -85,7 +86,8 @@ export default function App() {
     try {
       const response = await axios.post('/api/analyze', {
         session_id: sessionId,
-        target_role: targetRole.trim()
+        target_role: targetRole.trim(),
+        application_level: applicationLevel
       });
       setReport(response.data.analysis);
 
@@ -212,6 +214,8 @@ export default function App() {
               <Hero
                 targetRole={targetRole}
                 setTargetRole={setTargetRole}
+                applicationLevel={applicationLevel}
+                setApplicationLevel={setApplicationLevel}
                 onAnalyze={handleAnalyze}
                 selectedFile={selectedFile}
                 isAnalyzing={isLoading}

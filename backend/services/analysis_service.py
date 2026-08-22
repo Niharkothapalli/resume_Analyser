@@ -21,12 +21,12 @@ class AnalysisService:
         self.llm_service = get_llm_service()
 
 
-    def run_analysis(self, session_id: str, target_role: str) -> Dict[str, Any]:
+    def run_analysis(self, session_id: str, target_role: str, application_level: str = "fresher") -> Dict[str, Any]:
         """
         Main runner orchestrating RAG search, scoring, role snapshot, and LLM calls.
         Caches the output directly under uploads/{session_id}/analysis.json
         """
-        logger.info(f"Initiating analysis for session {session_id} and target role: {target_role}")
+        logger.info(f"Initiating analysis for session {session_id}, target role: '{target_role}', level: '{application_level}'")
         
         session_dir = settings.UPLOADS_DIR / session_id
         parsed_resume_path = session_dir / "parsed_resume.json"
@@ -44,8 +44,7 @@ class AnalysisService:
             
         # Get raw text
         resume_pdf_path = session_dir / "resume.pdf"
-        # We can extract text or look up chunks
-        # Let's search FAISS vector index for relevance to target_role
+        # Search FAISS vector index for relevance to target_role
         logger.info("Retrieving RAG semantic context blocks matching target role...")
         rag_chunks = search_index(session_id, target_role)
         rag_context = "\n\n".join([f"Chunk {c['chunk_id']} (Page {c['page']}, Section {c['section']}): {c['text']}" for c in rag_chunks])
@@ -53,24 +52,24 @@ class AnalysisService:
         # 2. Get role requirement data
         role_info = get_role_data(target_role)
         
-        # Save Session Role Snapshot (Improvement #5)
+        # Save Session Role Snapshot with application_level
         logger.info(f"Writing role snapshot to session path: {role_snapshot_path}")
+        role_snapshot_data = role_info.copy()
+        role_snapshot_data["application_level"] = application_level
         with open(role_snapshot_path, "w") as f:
-            json.dump(role_info, f, indent=2)
+            json.dump(role_snapshot_data, f, indent=2)
 
         # 3. Calculate Python scoring
-        # Load raw text from chunks to get complete keyword coverage
         raw_text_for_scoring = parsed_resume.get("raw_text", "")
         if not raw_text_for_scoring and resume_pdf_path.exists():
-            # Extract on the fly if not stored
             from backend.services.pdf_parser import extract_pdf_text_and_pages
             try:
                 raw_text_for_scoring, _ = extract_pdf_text_and_pages(resume_pdf_path)
             except Exception:
                 pass
                 
-        logger.info("Computing mathematical ATS score...")
-        score_results = calculate_ats_score(parsed_resume, raw_text_for_scoring, target_role)
+        logger.info(f"Computing mathematical ATS score for application level '{application_level}'...")
+        score_results = calculate_ats_score(parsed_resume, raw_text_for_scoring, target_role, application_level=application_level)
         ats_score = score_results["ats_score"]
         breakdown = score_results["score_breakdown"]
         keyword_breakdown = score_results["keyword_breakdown"]
@@ -86,15 +85,14 @@ class AnalysisService:
                 missing_skills.append(s)
         for s in role_info.get("preferred_skills", []):
             if s.lower() not in candidate_skills:
-                # Include preferred skills that are missing too
                 missing_skills.append(s)
 
-        # 4. Project & Certification Matching (Improvement #5)
+        # 4. Project & Certification Matching
         logger.info("Matching potential database projects and certifications to close skill gaps...")
         matched_projects = self._match_projects(missing_skills)
         matched_certs = self._match_certifications(missing_skills)
 
-        # 5. Load Prompt templates (Prompt Versioning Improvement #3)
+        # 5. Load Prompt templates
         v_dir = settings.PROMPTS_DIR / settings.PROMPT_VERSION
         system_prompt_path = v_dir / "system_prompt.txt"
         ats_prompt_path = v_dir / "ats_prompt.txt"
@@ -110,9 +108,18 @@ class AnalysisService:
         with open(ats_prompt_path, "r") as f:
             ats_prompt_template = f.read()
             
+        level_labels = {
+            "fresher": "Fresher / Entry Level",
+            "junior": "Junior / 1–2 Years",
+            "mid_level": "Mid-Level / 3–5 Years",
+            "senior": "Senior / 5+ Years"
+        }
+        application_level_label = level_labels.get(application_level, "Fresher / Entry Level")
+
         # 6. Fill template variables
         prompt_user = ats_prompt_template.format(
             target_role=target_role,
+            application_level_label=application_level_label,
             ats_score=ats_score,
             tech_score=breakdown["technical_skills"]["score"],
             exp_score=breakdown["experience"]["score"],
@@ -153,8 +160,10 @@ class AnalysisService:
                     report_data["score_breakdown"][cat]["score"] = details["score"]
                     report_data["score_breakdown"][cat]["max"] = details["max"]
             
-            # Ensure keyword breakdown is injected correctly
+            # Ensure keyword breakdown and metadata are injected correctly
             report_data["keyword_breakdown"] = keyword_breakdown
+            report_data["target_role"] = target_role
+            report_data["application_level"] = application_level
             
             # Write cache
             with open(analysis_path, "w") as f:

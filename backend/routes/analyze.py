@@ -14,12 +14,15 @@ analysis_service = AnalysisService()
 @router.post("/analyze", response_model=AnalyzeResponse)
 def analyze_resume(request: AnalyzeRequest):
     """
-    Triggers complete RAG analysis workflow for target_role.
-    Calculates detailed ATS score, flags skill gaps, recommends projects/certs,
+    Triggers complete RAG analysis workflow for target_role and application_level.
+    Calculates detailed level-aware ATS score, flags skill gaps, recommends projects/certs,
     and queries LLM using structured versioned prompts.
     """
     session_id = validate_session_id(request.session_id)
     target_role = request.target_role.strip()
+    raw_level = (request.application_level or "fresher").strip().lower().replace("-", "_")
+    valid_levels = {"fresher": "fresher", "junior": "junior", "mid_level": "mid_level", "senior": "senior"}
+    application_level = valid_levels.get(raw_level, "fresher")
     
     if not target_role:
         raise HTTPException(
@@ -27,7 +30,7 @@ def analyze_resume(request: AnalyzeRequest):
             detail="Target role parameter cannot be empty."
         )
 
-    logger.info(f"Received analysis request: session={session_id}, role='{target_role}'")
+    logger.info(f"Received analysis request: session={session_id}, role='{target_role}', level='{application_level}'")
     
     session_dir = settings.UPLOADS_DIR / session_id
     if not session_dir.exists():
@@ -39,7 +42,7 @@ def analyze_resume(request: AnalyzeRequest):
         
     analysis_cache_path = session_dir / "analysis.json"
     
-    # Check cached analysis report matching exact role
+    # Check cached analysis report matching exact role and application_level
     if analysis_cache_path.exists():
         try:
             with open(analysis_cache_path, "r", encoding="utf-8") as f:
@@ -50,17 +53,18 @@ def analyze_resume(request: AnalyzeRequest):
             if role_snapshot_path.exists():
                 with open(role_snapshot_path, "r", encoding="utf-8") as f:
                     snapshot_data = json.load(f)
-                    if snapshot_data.get("role", "").lower() == target_role.lower():
+                    if (snapshot_data.get("role", "").lower() == target_role.lower() and 
+                        snapshot_data.get("application_level", "fresher") == application_level):
                         role_matches = True
             
             if role_matches:
-                logger.info(f"Reusing cached analysis report for session {session_id}")
+                logger.info(f"Reusing cached analysis report for session {session_id} (role='{target_role}', level='{application_level}')")
                 return AnalyzeResponse(session_id=session_id, analysis=AnalysisReport(**cached_report))
         except Exception as e:
             logger.warning(f"Error loading cached analysis (will recompute): {e}")
 
     try:
-        report_data = analysis_service.run_analysis(session_id, target_role)
+        report_data = analysis_service.run_analysis(session_id, target_role, application_level=application_level)
         return AnalyzeResponse(
             session_id=session_id,
             analysis=AnalysisReport(**report_data)

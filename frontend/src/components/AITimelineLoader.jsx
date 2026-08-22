@@ -161,7 +161,7 @@ export default function AITimelineLoader({ isAnalyzing, error, onRetry }) {
                 <p className="text-white/70 text-xs leading-relaxed">{error}</p>
               </div>
               <button
-                onClick={onRetry}
+                onClick={() => window.location.reload()}
                 className="w-full py-3.5 rounded-full font-['Syne'] font-extrabold text-xs tracking-widest uppercase bg-white text-[#121214] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RefreshCw className="w-4 h-4" />
