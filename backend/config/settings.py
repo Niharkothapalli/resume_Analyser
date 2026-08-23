@@ -29,6 +29,8 @@ else:
         "http://localhost:3000",
         "https://career-lens-ai-nk.vercel.app",
         "https://careerlens-ai.vercel.app",
+        "https://resume-analyser.vercel.app",
+        "https://resume-analyser-git-main.vercel.app",
     ]
 
 # LLM Provider Configuration
