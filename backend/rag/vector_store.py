@@ -4,22 +4,34 @@ import logging
 import numpy as np
 import faiss
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any
 from backend.config import settings, rag_config
 
 logger = logging.getLogger("careerlens_ai")
 
-# Lazy-loaded embedding model to save memory when starting up
-_embedding_model = None
+def get_embeddings(texts: list) -> np.ndarray:
+    """Generate embeddings using Cohere API instead of local torch model."""
+    import cohere
+    co = cohere.ClientV2(api_key=settings.COHERE_API_KEY)
+    response = co.embed(
+        texts=texts,
+        model="embed-english-light-v3.0",
+        input_type="search_document",
+        embedding_types=["float"]
+    )
+    return np.array(response.embeddings.float_, dtype=np.float32)
 
-def get_embedding_model() -> "SentenceTransformer":
-    global _embedding_model
-    if _embedding_model is None:
-        from sentence_transformers import SentenceTransformer
-        logger.info(f"Loading local SentenceTransformer model: {rag_config.EMBEDDING_MODEL}")
-        # downloads/loads model weights
-        _embedding_model = SentenceTransformer(rag_config.EMBEDDING_MODEL)
-    return _embedding_model
+def get_query_embedding(query: str) -> np.ndarray:
+    """Generate query embedding using Cohere API."""
+    import cohere
+    co = cohere.ClientV2(api_key=settings.COHERE_API_KEY)
+    response = co.embed(
+        texts=[query],
+        model="embed-english-light-v3.0",
+        input_type="search_query",
+        embedding_types=["float"]
+    )
+    return np.array(response.embeddings.float_, dtype=np.float32)
 
 def chunk_text_by_pages(raw_text: str) -> List[Dict[str, Any]]:
     """
@@ -110,10 +122,9 @@ def build_and_save_index(session_id: str, raw_text: str) -> List[Dict[str, Any]]
         # Fallback if text is short
         chunks = [{"chunk_id": 0, "page": 1, "section": "Summary", "text": raw_text}]
         
-    # 2. Generate Embeddings
-    model = get_embedding_model()
+    # 2. Generate Embeddings via Cohere API
     texts = [c["text"] for c in chunks]
-    embeddings = model.encode(texts, convert_to_numpy=True)
+    embeddings = get_embeddings(texts)
     
     # 3. Normalize vectors for Cosine Similarity (Inner Product)
     faiss.normalize_L2(embeddings)
@@ -149,9 +160,8 @@ def search_index(session_id: str, query: str) -> List[Dict[str, Any]]:
         with open(metadata_path, "rb") as f:
             chunks = pickle.load(f)
             
-        # Embed query
-        model = get_embedding_model()
-        query_vector = model.encode([query], convert_to_numpy=True)
+        # Embed query via Cohere API
+        query_vector = get_query_embedding(query)
         faiss.normalize_L2(query_vector)
         
         # Search index
