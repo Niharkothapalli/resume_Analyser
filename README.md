@@ -588,3 +588,5 @@ Made with ❤️ by the **CareerLens AI** Open Source Team.
 [⭐ Star us on GitHub](https://github.com/your-username/CareerLensAI)
 
 </div>
+#   r e s u m e _ A n a l y s e r  
+ 
