@@ -60,7 +60,12 @@ export default function App() {
       setError('');
     } catch (err) {
       console.error('Upload error:', err);
-      setError(err.response?.data?.detail || 'Upload failed. Please verify the backend service is running.');
+      const status = err.response?.status;
+      if (!err.response) {
+        setError('Backend is starting up. Please wait 30 seconds and try uploading again.');
+      } else {
+        setError(err.response?.data?.detail || 'Upload failed. Please try again.');
+      }
       setSelectedFile(null);
       setSessionId('');
       setParsedData(null);

@@ -125,6 +125,8 @@ export default function Hero({ targetRole, setTargetRole, applicationLevel = 'fr
   const handleHeroClick = () => {
     if (!selectedFile) {
       document.getElementById('portalContainer')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (!isReady) {
+      document.getElementById('portalContainer')?.scrollIntoView({ behavior: 'smooth' });
     } else if (onAnalyze) {
       onAnalyze();
     }
