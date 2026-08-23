@@ -19,23 +19,9 @@ export default function Navbar({ onOpenHistory }) {
       try {
         const url = `${API_BASE_URL}/api/health`;
 
-        console.log("🔍 Checking backend:", url);
-
         const response = await axios.get(url);
-
-        console.log("✅ Health Response:", response.data);
-
         setHealthData(response.data);
       } catch (err) {
-        console.error("❌ Health Check Failed");
-
-        if (err.response) {
-          console.error("Status:", err.response.status);
-          console.error("Response:", err.response.data);
-        } else {
-          console.error(err.message);
-        }
-
         setHealthData({
           status: "offline",
           provider: "unknown",
@@ -52,9 +38,7 @@ export default function Navbar({ onOpenHistory }) {
 
   const isOnline = healthData.status === "healthy";
 
-console.log("Health State:", JSON.stringify(healthData));
-console.log("Status =", healthData.status);
-console.log("Type =", typeof healthData.status);  console.log("isOnline:", isOnline);
+
 
   return (
     <nav className="relative z-50 py-5 font-sans border-b border-white/5 bg-[#121214]/40 backdrop-blur-md">
@@ -88,7 +72,7 @@ console.log("Type =", typeof healthData.status);  console.log("isOnline:", isOnl
             />
 
             <span>
-              System: {isOnline ? "Online" : "Offline"}
+              {healthData.status === 'checking' ? 'Waking up...' : isOnline ? 'System: Online' : 'System: Offline'}
             </span>
 
             {isOnline && healthData.provider && (
