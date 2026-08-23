@@ -10,16 +10,10 @@ export default function Navbar({ onOpenHistory }) {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Backend URL from Vercel/.env
-  const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "";
-
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const url = `${API_BASE_URL}/api/health`;
-
-        const response = await axios.get(url);
+        const response = await axios.get("/api/health");
         setHealthData(response.data);
       } catch (err) {
         setHealthData({
@@ -34,7 +28,7 @@ export default function Navbar({ onOpenHistory }) {
     const interval = setInterval(checkHealth, 30000);
 
     return () => clearInterval(interval);
-  }, [API_BASE_URL]);
+  }, []);
 
   const isOnline = healthData.status === "healthy";
 
