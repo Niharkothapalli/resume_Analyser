@@ -16,7 +16,7 @@ transformers>=4.40.0,<5.0.0
 
 # CPU-only PyTorch (avoids ~2GB GPU build on Render free tier)
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.2.2+cpu
+torch==2.13.0+cpu
 
 # Resume Parsing
 pymupdf>=1.23.0,<2.0.0
