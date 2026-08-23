@@ -1,5 +1,5 @@
 # ==============================================================================
-# CareerLens AI - Production Backend Dependencies
+# CareerLens AI - Production Backend Dependencies (Render Free Tier Optimized)
 # ==============================================================================
 
 # Web Framework
@@ -8,26 +8,25 @@ uvicorn[standard]>=0.27.0,<1.0.0
 pydantic>=2.6.0,<3.0.0
 python-multipart>=0.0.9,<1.0.0
 
-# AI & Vector Search
+# AI
 cohere>=5.0.0,<8.0.0
-sentence-transformers>=3.0.0,<4.0.0
-faiss-cpu>=1.8.0,<2.0.0
-transformers>=4.40.0,<5.0.0
 
-# CPU-only PyTorch (avoids ~2GB GPU build on Render free tier)
+# Vector Search - CPU only, lightweight
+faiss-cpu>=1.8.0,<2.0.0
+
+# Embeddings - CPU torch only (must come before sentence-transformers)
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.13.0+cpu
+transformers>=4.40.0,<5.0.0
+sentence-transformers>=3.0.0,<4.0.0
 
 # Resume Parsing
 pymupdf>=1.23.0,<2.0.0
 pdfplumber>=0.10.3,<1.0.0
-python-docx>=1.1.0,<2.0.0
 
 # Data
-pandas>=2.2.0,<3.0.0
 numpy>=1.26.0,<3.0.0
 
 # Utilities
 python-dotenv>=1.0.1,<2.0.0
 requests>=2.31.0,<3.0.0
-tqdm>=4.66.0,<5.0.0
